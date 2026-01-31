@@ -314,7 +314,6 @@
                             (map #(vector (::lib-name %) %))
                             (into {}))}))
 
-
 (def godot-clojure-dir ".godot-clojure")
 
 (def gd-extension-type-registry-filename "gd-extension-type-registry.edn")
@@ -322,7 +321,7 @@
 (defn read-gd-extension-interface-ast!
   "Try to retrieve gdextension_interface.h AST."
   []
-  (let [res (shell/sh "clang" "-Xclang" "-ast-dump=json" "godot-headers/gdextension_interface.h")]
+  (let [res (shell/sh "clang" "-fsyntax-only" "-Xclang" "-ast-dump=json" "godot-headers/gdextension_interface.h")]
     (if (zero? (:exit res))
       (json/read-str (:out res))
       (throw (Throwable. (format "Unexpected error when getting AST: %s" (:err res)))))))

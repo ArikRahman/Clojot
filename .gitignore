@@ -5,3 +5,4 @@ classes
 build
 **/.cache
 .godot-clojure
+manus/
