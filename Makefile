@@ -15,12 +15,23 @@ LIBS = -ljvm -L $(JAVA_HOME)/lib -L $(JAVA_HOME)/lib/server
 TARGET_DIR = src/dummy_godot_project
 TARGET = $(TARGET_DIR)/entry.so
 
-# entry.so maker might have more flags than needed but I did not want to risk breaking
-# anything so it stays the way it is
-all:
-	$(CC) -g -Wall -Wl,--no-as-needed -fPIC $(INCLUDES) -c src/entry.c -o entry.o -rdynamic $(LIBS)
-	$(CC) -g -fPIC -Wl,--no-as-needed $(INCLUDES) $(LIBS) -shared -o $(TARGET) entry.o -rdynamic
-	rm entry.o
+CC ?= clang
+CFLAGS ?= -g -Wall -fPIC
+CPPFLAGS ?= $(INCLUDES)
+LDFLAGS ?= -Wl,--no-as-needed -rdynamic -L$(JAVA_HOME)/lib -L$(JAVA_HOME)/lib/server
+LDLIBS ?= -ljvm
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+entry.o: src/entry.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+$(TARGET): entry.o
+	mkdir -p $(TARGET_DIR)
+	$(CC) -shared -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	rm -f entry.o
 
 clean:
 	rm -f $(TARGET) entry.o
