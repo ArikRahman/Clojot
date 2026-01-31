@@ -2,9 +2,10 @@
 
 ## Project Overview
 
+
 **Clojot** (also known as godot-clojure) is a project aimed at integrating Clojure with the Godot game engine using GDExtension. This allows developers to write Godot game logic in Clojure.
 
-The core mechanism involves compiling a shared library (`entry.so`) that links against the JVM, allowing Godot to invoke Clojure code.
+The core mechanism involves compiling a shared library (`entry.so`) that links against the JVM, allowing Godot to invoke Clojure code. 
 
 ## Directory Structure
 
@@ -15,14 +16,18 @@ The core mechanism involves compiling a shared library (`entry.so`) that links a
 - `godot-headers/`: GDExtension headers.
 - `test/`: Tests.
 
+
+# Author notes:
+
+
 ## Development Environment Setup
 
 ### Prerequisites
 
 - **Java:** OpenJDK 11 is required (`openjdk-11-jdk`). The `Makefile` currently hardcodes the `JAVA_HOME` path to `/usr/lib/jvm/java-1.11.0-openjdk-amd64`, so ensure this matches your environment or update the Makefile.
 - **Clang:** Used for processing `gdextension_interface.h`.
-- **GCC:** Used for compiling the C entry point.
-- **Clojure Tools:** `clj`, `bb` (Babashka) likely needed based on `bb.edn`.
+<!--- **GCC:** Used for compiling the C entry point.--> Clang > GCC
+- **Clojure Tools:** `clj`, `bb` (Babashka) needed based on `bb.edn`.
 
 ### Building
 
