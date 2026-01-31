@@ -3,11 +3,11 @@
 (require '[babashka.process :refer [process]])
 (require '[bb-utils :as u])
 
-(process {:inherit true
-          :dir (u/get-project-root!)
-          :env (u/get-env! "godot-clojure.dev.testing" "run-godot-tests!")}
-         "./src/dummy_godot_project/test_project.x86_64
-         --headless")
-
-(while true
-  (Thread/sleep (.-MAX_VALUE Long)))
+(let [result @(process {:inherit true
+                        :dir (u/get-project-root!)
+                        :env (u/get-env! "godot-clojure.dev.testing" "run-godot-tests!")}
+                       "./src/dummy_godot_project/test_project.x86_64"
+                       "--headless"
+                       "--verbose"
+                       "--quit-after" "2")]
+  (System/exit (:exit result)))
