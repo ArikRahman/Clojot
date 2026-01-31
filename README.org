@@ -5,6 +5,7 @@ Godot + Clojure integration via GDExtension.
 Work in progress!
 
 * Dev info
+* used godot 4.2.1
 ** Dev dependencies
 - =clang= :: Is used to obtain "gdextension_interface.h" AST
 - =clj-kondo= :: Static analysis and linting
