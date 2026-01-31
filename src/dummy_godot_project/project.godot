@@ -12,4 +12,8 @@ config_version=5
 
 config/name="godot-headless-test-2"
 run/main_scene="res://DummyScene.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
+
+[gui]
+
+theme/custom="uid://bcibt73qths3g"
