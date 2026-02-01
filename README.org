@@ -10,7 +10,7 @@ Work in progress!
 ** Dev dependencies
 - =clang= :: Is used to obtain "gdextension_interface.h" AST
 - =clj-kondo= :: Static analysis and linting
-- =openjdk-11-jdk= :: Is used to be able to compile the shared library
+- =openjdk-25= :: Is used to be able to compile the shared library
 ** Scripts
 - ~clj-kondo --lint src/~ :: lint
 - ~bin/nrepl~ :: Launch nrepl with a Godot handle
